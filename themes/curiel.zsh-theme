@@ -17,5 +17,5 @@ PROMPT="╭─${user_host} ${current_dir} ${git_branch}
 ╰─%B${current_char}%b "
 RPS1="${return_code}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[red]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
