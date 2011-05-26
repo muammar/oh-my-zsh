@@ -15,7 +15,6 @@ for plugin ($plugins) fpath=($ZSH/plugins/$plugin $fpath)
 autoload -U compinit
 compinit -i
 
-# Needed to load some alias and autocompletions
 autoload -U $ZSH/functions/*(:t)
 
 # Load all of the plugins that were defined in ~/.zshrc
