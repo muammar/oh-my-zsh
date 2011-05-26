@@ -1,7 +1,6 @@
 # https://github.com/gcuriel/
 # 
 # Django-related zsh aliases and functions for zsh
-j
 # Django helpers
 
 setdsm() {
