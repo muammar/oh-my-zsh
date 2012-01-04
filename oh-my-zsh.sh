@@ -34,7 +34,6 @@ done
 autoload -U compinit
 compinit -i
 
-<<<<<<< HEAD
 autoload -U $ZSH/functions/*(:t)
 
 # Set ZSH_CUSTOM to the path where your custom config files
@@ -43,8 +42,6 @@ if [ "$ZSH_CUSTOM" = ""  ]
 then
     ZSH_CUSTOM="$ZSH/custom"
 fi
-=======
->>>>>>> 8c45b739181ba58e91e2dceaa53b08161c46b03f
 
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
