@@ -13,14 +13,28 @@ fpath=($ZSH/functions $ZSH/completions $fpath)
 # TIP: Add files you don't want in git to .gitignore
 for config_file ($ZSH/lib/*.zsh) source $config_file
 
-# Add all defined plugins to fpath
+# Set ZSH_CUSTOM to the path where your custom config files
+# and plugins exists, or else we will use the default custom/
+if [[ -z "$ZSH_CUSTOM" ]]; then
+    ZSH_CUSTOM="$ZSH/custom"
+fi
+
+# Add all defined plugins to fpath. This must be done
+# before running compinit.
 plugin=${plugin:=()}
-for plugin ($plugins) fpath=($ZSH/plugins/$plugin $fpath)
+for plugin ($plugins); do
+  if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
+    fpath=($ZSH_CUSTOM/plugins/$plugin $fpath)
+  elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+    fpath=($ZSH/plugins/$plugin $fpath)
+  fi
+done
 
 # Load and run compinit
 autoload -U compinit
 compinit -i
 
+<<<<<<< HEAD
 autoload -U $ZSH/functions/*(:t)
 
 # Set ZSH_CUSTOM to the path where your custom config files
@@ -29,6 +43,8 @@ if [ "$ZSH_CUSTOM" = ""  ]
 then
     ZSH_CUSTOM="$ZSH/custom"
 fi
+=======
+>>>>>>> 8c45b739181ba58e91e2dceaa53b08161c46b03f
 
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
@@ -54,7 +70,12 @@ then
 else
   if [ ! "$ZSH_THEME" = ""  ]
   then
-    source "$ZSH/themes/$ZSH_THEME.zsh-theme"
+    if [ -f "$ZSH/custom/$ZSH_THEME.zsh-theme" ]
+    then
+      source "$ZSH/custom/$ZSH_THEME.zsh-theme"
+    else
+      source "$ZSH/themes/$ZSH_THEME.zsh-theme"
+    fi
   fi
 fi
 
